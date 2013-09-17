@@ -15,9 +15,9 @@ The module exports a single function called `parse`.
 
 ### parse(inputString[, ignoreCase = true, expand = false])
 
-`inputString`: The string in solr format (see http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory)
-`ignoreCase`: Ignore the case. Duh.
-`expand`: See http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory
+* `inputString`: The string in solr format (see http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory)
+* `ignoreCase`: Ignore the case. Duh.
+* `expand`: See http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory
 
 Usage
 -----
@@ -28,12 +28,12 @@ var synonyms = require('solr-synonyms');
 var obj = synonyms.parse(input);
 ```
 
-Now you can simply replace words in your texts by looking them up in the returned object.
+Now you can simply replace tokens in your texts by looking them up in the returned object.
 
 Example output
 --------------
 
-Given this input
+### Given this input
 
 ```
 # blank lines and lines starting with pound are comments.
@@ -66,7 +66,7 @@ foo => baz
 foo => foo bar, baz
 ```
 
-with `expand = false`
+### with `expand = false`
 
 ```js
 {
@@ -107,7 +107,7 @@ with `expand = false`
 }
 ```
 
-with `expand = true`
+### with `expand = true`
 
 ```js
 {
