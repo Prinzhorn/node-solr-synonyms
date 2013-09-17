@@ -8,18 +8,40 @@ var input = fs.readFileSync(path.join(__dirname, '/synonyms.txt'), 'UTF-8');
 var withoutExpand = synonyms.parse(input, true, false);
 
 assert.deepEqual(withoutExpand, {
-	"i-pod": "ipod",
-	"i pod ": "ipod",
-	"sea biscuit": "seabiscuit",
-	"sea biscit ": "seabiscuit",
-	"ipod": "ipod",
-	"i pod": "ipod",
-	"foozball": "foozball",
-	"foosball": "foozball",
-	"universe": "universe",
-	"cosmos": "universe",
-	"foo ": "foo bar",
+	"i-pod": [
+		"ipod"
+	],
+	"i pod ": [
+		"ipod"
+	],
+	"sea biscuit": [
+		"seabiscuit"
+	],
+	"sea biscit ": [
+		"seabiscuit"
+	],
+	"ipod": [
+		"ipod"
+	],
+	"i pod": [
+		"ipod"
+	],
+	"foozball": [
+		"foozball"
+	],
+	"foosball": [
+		"foozball"
+	],
+	"universe": [
+		"universe"
+	],
+	"cosmos": [
+		"universe"
+	],
+	"foo ": [
+		"foo bar",
 		"baz"
+	]
 }, 'WAT');
 
 var withExpand = synonyms.parse(input, true, true);
