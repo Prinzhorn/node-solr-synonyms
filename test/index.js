@@ -89,4 +89,6 @@ assert.deepEqual(withExpand, {
 	]
 }, 'WAT');
 
+assert.equal(1,1);
+
 console.log('OK');
