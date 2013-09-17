@@ -11,8 +11,6 @@ Installation
 API
 ---
 
-The module exports a single function called `parse`.
-
 ### parse(inputString[, ignoreCase = true, expand = false])
 
 * `inputString`: The string in solr format (see http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory)
