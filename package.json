@@ -28,5 +28,13 @@
   "scripts": {
     "test": "node test"
   },
-  "keywords": ["synonyms", "fulltext", "solr", "elasticsearch"]
+  "keywords": [
+    "synonyms",
+    "fulltext",
+    "solr",
+    "elasticsearch"
+  ],
+  "devDependencies": {
+    "chai": "~1.7.2"
+  }
 }

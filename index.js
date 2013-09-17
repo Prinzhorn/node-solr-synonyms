@@ -1,6 +1,14 @@
-var parse = function(input, ignoreCase, expand) {
-	input = input || '';
+var rxTrim = /^\s+|\s+$/g;
 
+var trim = function(str) {
+	return str.replace(rxTrim, '');
+};
+
+var removeEmpty = function(str) {
+	return !!str;
+};
+
+var parse = function(input, ignoreCase, expand) {
 	//true by default.
 	ignoreCase = ignoreCase !== false;
 
@@ -13,41 +21,64 @@ var parse = function(input, ignoreCase, expand) {
 
 	//Get all relevant lines (ignore comments and empty line-breaks).
 	var rxLines = /^[^#\n\r]+/gm;
-	var rxTrim = /^\s+|\s+$/g;
-	var rxSplitWords = /\s*,\s*/g;
 	var line;
 	var words, lhsWords, rhsWords;
 
 	while(line = rxLines.exec(input)) {
-		line = line[0].replace(rxTrim, '');
+		line = trim(line[0]);
 
 		if(line.indexOf('=>') > -1) {
-			words = line.match(/^(.+)\s*=>\s*(.+)/);
+			words = line.match(/^(.+)=>(.+)/);
 
 			if(!words) {
 				continue;
 			}
 
-			lhsWords = words[1].split(rxSplitWords);
-			rhsWords = words[2].split(rxSplitWords);
+			lhsWords = words[1].split(',').map(trim).filter(removeEmpty);
+			rhsWords = words[2].split(',').map(trim).filter(removeEmpty);
 
 			lhsWords.forEach(function(left) {
-				output[left] = rhsWords.slice(0);
+				if(!output[left]) {
+					output[left] = {};
+				}
+
+				rhsWords.forEach(function(right) {
+					output[left][right] = 1;
+				});
 			});
 		} else {
-			words = line.split(rxSplitWords);
+			words = line.split(',').map(trim).filter(removeEmpty);
 
-			if(!words.length) {
-				continue;
-			}
+			words.forEach(function(outer) {
+				if(!output[outer]) {
+					output[outer] = {};
+				}
 
-			words.forEach(function(word) {
-				output[word] = expand ? words.slice(0) : [words[0]];
+				(expand ? words : [words[0]]).forEach(function(inner) {
+					output[outer][inner] = 1;
+				});
 			});
 		}
 	}
 
+	Object.keys(output).forEach(function(key) {
+		output[key] = Object.keys(output[key]);
+	});
+
 	return output;
 };
 
-exports.parse = parse;
+var replace = function(tokens, synonyms) {
+	var output = [];
+
+	tokens.forEach(function(token) {
+		output.push.apply(output, synonyms[token] || [token]);
+	});
+
+	return output;
+};
+
+module.exports = {
+	parse: parse,
+	replace: replace
+};

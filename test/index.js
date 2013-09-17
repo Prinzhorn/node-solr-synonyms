@@ -1,94 +1,41 @@
 var fs = require('fs');
 var path = require('path');
-var assert = require('assert');
+var expect = require('chai').expect;
+
 var synonyms = require('../');
 
 var input = fs.readFileSync(path.join(__dirname, '/synonyms.txt'), 'UTF-8');
 
-var withoutExpand = synonyms.parse(input, true, false);
+it('works with expand set to false', function() {
+	var withoutExpand = synonyms.parse(input, true, false);
 
-assert.deepEqual(withoutExpand, {
-	"i-pod": [
-		"ipod"
-	],
-	"i pod ": [
-		"ipod"
-	],
-	"sea biscuit": [
-		"seabiscuit"
-	],
-	"sea biscit ": [
-		"seabiscuit"
-	],
-	"ipod": [
-		"ipod"
-	],
-	"i pod": [
-		"ipod"
-	],
-	"foozball": [
-		"foozball"
-	],
-	"foosball": [
-		"foozball"
-	],
-	"universe": [
-		"universe"
-	],
-	"cosmos": [
-		"universe"
-	],
-	"foo ": [
-		"foo bar",
-		"baz"
-	]
-}, 'WAT');
+	expect(withoutExpand).to.deep.equal({
+		'i-pod': ['ipod', 'i-pod', 'i pod'],
+		'i pod': ['ipod', 'i-pod', 'i pod'],
+		'ipod': ['ipod', 'i-pod', 'i pod'],
+		'sea biscuit': ['seabiscuit'],
+		'sea biscit': ['seabiscuit'],
+		'foosball': ['foozball'],
+		'foozball': ['foozball'],
+		'universe': ['universe'],
+		'cosmos': ['universe'],
+		'foo': ['foo bar', 'baz']
+	});
+});
 
-var withExpand = synonyms.parse(input, true, true);
+it('works with expand set to true', function() {
+	var withExpand = synonyms.parse(input, true, true);
 
-assert.deepEqual(withExpand, {
-	"i-pod": [
-		"ipod"
-	],
-	"i pod ": [
-		"ipod"
-	],
-	"sea biscuit": [
-		"seabiscuit"
-	],
-	"sea biscit ": [
-		"seabiscuit"
-	],
-	"ipod": [
-		"ipod"
-	],
-	"i pod": [
-		"ipod",
-		"i-pod",
-		"i pod"
-	],
-	"foozball": [
-		"foozball",
-		"foosball"
-	],
-	"foosball": [
-		"foozball",
-		"foosball"
-	],
-	"universe": [
-		"universe",
-		"cosmos"
-	],
-	"cosmos": [
-		"universe",
-		"cosmos"
-	],
-	"foo ": [
-		"foo bar",
-		"baz"
-	]
-}, 'WAT');
-
-assert.equal(1,1);
-
-console.log('OK');
+	expect(withExpand).to.deep.equal({
+		'i-pod': ['ipod', 'i-pod', 'i pod'],
+		'i pod': ['ipod', 'i-pod', 'i pod'],
+		'ipod': ['ipod', 'i-pod', 'i pod'],
+		'sea biscuit': ['seabiscuit'],
+		'sea biscit': ['seabiscuit'],
+		'foozball': ['foozball', 'foosball'],
+		'foosball': ['foozball', 'foosball'],
+		'universe': ['universe', 'cosmos'],
+		'cosmos': ['universe', 'cosmos'],
+		'foo': ['foo bar', 'baz']
+	});
+});
