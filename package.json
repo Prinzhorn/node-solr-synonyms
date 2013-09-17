@@ -1,6 +1,5 @@
 {
-  "name": "node-solr-synonyms",
-  "title": "node-solr-synonyms",
+  "name": "solr-synonyms",
   "description": "Parse Solr/ElasticSearch synonyms files into JavaScript objects.",
   "version": "0.0.1",
   "homepage": "https://github.com/Prinzhorn/node-solr-synonyms",
