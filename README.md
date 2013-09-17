@@ -68,40 +68,16 @@ foo => foo bar, baz
 
 ```js
 {
-	"i-pod": [
-		"ipod"
-	],
-	"i pod ": [
-		"ipod"
-	],
-	"sea biscuit": [
-		"seabiscuit"
-	],
-	"sea biscit ": [
-		"seabiscuit"
-	],
-	"ipod": [
-		"ipod"
-	],
-	"i pod": [
-		"ipod"
-	],
-	"foozball": [
-		"foozball"
-	],
-	"foosball": [
-		"foozball"
-	],
-	"universe": [
-		"universe"
-	],
-	"cosmos": [
-		"universe"
-	],
-	"foo ": [
-		"foo bar",
-		"baz"
-	]
+	'i-pod': ['ipod', 'i-pod', 'i pod'],
+	'i pod': ['ipod', 'i-pod', 'i pod'],
+	'ipod': ['ipod', 'i-pod', 'i pod'],
+	'sea biscuit': ['seabiscuit'],
+	'sea biscit': ['seabiscuit'],
+	'foosball': ['foozball'],
+	'foozball': ['foozball'],
+	'universe': ['universe'],
+	'cosmos': ['universe'],
+	'foo': ['foo bar', 'baz']
 }
 ```
 
@@ -109,45 +85,15 @@ foo => foo bar, baz
 
 ```js
 {
-	"i-pod": [
-		"ipod"
-	],
-	"i pod ": [
-		"ipod"
-	],
-	"sea biscuit": [
-		"seabiscuit"
-	],
-	"sea biscit ": [
-		"seabiscuit"
-	],
-	"ipod": [
-		"ipod"
-	],
-	"i pod": [
-		"ipod",
-		"i-pod",
-		"i pod"
-	],
-	"foozball": [
-		"foozball",
-		"foosball"
-	],
-	"foosball": [
-		"foozball",
-		"foosball"
-	],
-	"universe": [
-		"universe",
-		"cosmos"
-	],
-	"cosmos": [
-		"universe",
-		"cosmos"
-	],
-	"foo ": [
-		"foo bar",
-		"baz"
-	]
+	'i-pod': ['ipod', 'i-pod', 'i pod'],
+	'i pod': ['ipod', 'i-pod', 'i pod'],
+	'ipod': ['ipod', 'i-pod', 'i pod'],
+	'sea biscuit': ['seabiscuit'],
+	'sea biscit': ['seabiscuit'],
+	'foozball': ['foozball', 'foosball'],
+	'foosball': ['foozball', 'foosball'],
+	'universe': ['universe', 'cosmos'],
+	'cosmos': ['universe', 'cosmos'],
+	'foo': ['foo bar', 'baz']
 }
 ```
