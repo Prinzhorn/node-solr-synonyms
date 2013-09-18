@@ -1,32 +1,46 @@
 node-solr-synonyms
 ==================
 
-Parse Solr/ElasticSearch synonyms files into JavaScript objects
+Parse Solr/ElasticSearch synonyms files into JavaScript objects. You can then replace tokens with their synonyms easily.
+
+Infos on synonyms file format http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory
+
 
 Installation
 ------------
 
 > npm install solr-synonyms
 
-API
----
-
-### parse(inputString[, ignoreCase = true, expand = false])
-
-* `inputString`: The string in solr format (see http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory)
-* `ignoreCase`: Ignore the case. Duh.
-* `expand`: See http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory
 
 Usage
 -----
 
 ```js
 var synonyms = require('solr-synonyms');
-
-var obj = synonyms.parse(input);
 ```
 
-Now you can simply replace tokens in your texts by looking them up in the returned object.
+Now you have access to the api.
+
+
+API
+---
+
+### synonyms.parse(inputString[, ignoreCase = true, expand = false])
+
+* `inputString`: The string in solr format (see http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory)
+* `ignoreCase`: Ignore the case. Duh.
+* `expand`: See http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory
+
+Returns an object which maps the keys to arrays of strings.
+
+
+### synonyms.replace(tokens, synonyms)
+
+* `tokens`: An array of strings.
+* `synonyms`: An object which maps words to synonyms. E.g. the output of `synonyms.parse`.
+
+Returns a new array where `tokens` have been replaced by their `synonyms`.
+
 
 Example output
 --------------
@@ -64,6 +78,7 @@ foo => baz
 foo => foo bar, baz
 ```
 
+
 ### with `expand = false`
 
 ```js
@@ -80,6 +95,7 @@ foo => foo bar, baz
 	'foo': ['foo bar', 'baz']
 }
 ```
+
 
 ### with `expand = true`
 
