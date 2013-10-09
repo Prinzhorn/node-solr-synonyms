@@ -1,7 +1,5 @@
-var rxTrim = /^\s+|\s+$/g;
-
 var trim = function(str) {
-	return str.replace(rxTrim, '');
+	return str.trim();
 };
 
 var removeEmpty = function(str) {
