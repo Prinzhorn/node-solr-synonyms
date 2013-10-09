@@ -11,6 +11,11 @@ Installation
 
 > npm install solr-synonyms
 
+or for the `synonyms` cli
+
+> npm install solr-synonyms -g
+
+type `synonyms --help` for documentation.
 
 Usage
 -----
