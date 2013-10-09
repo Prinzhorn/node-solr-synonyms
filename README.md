@@ -3,7 +3,7 @@ node-solr-synonyms
 
 Parse Solr/ElasticSearch synonyms files into JavaScript objects. You can then replace tokens with their synonyms easily.
 
-Infos on synonyms file format http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory
+Info on synonyms file format http://wiki.apache.org/solr/AnalyzersTokenizersTokenFilters#solr.SynonymFilterFactory
 
 
 Installation
@@ -37,7 +37,7 @@ Returns an object which maps the keys to arrays of strings.
 ### synonyms.replace(tokens, synonyms)
 
 * `tokens`: An array of strings.
-* `synonyms`: An object which maps words to synonyms. E.g. the output of `synonyms.parse`.
+* `synonyms`: An object which maps words to synonyms, e.g. the output of `synonyms.parse`.
 
 Returns a new array where `tokens` have been replaced by their `synonyms`.
 
